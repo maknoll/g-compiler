@@ -1,4 +1,4 @@
-martinc
+g-compiler
 *.o
 lexer.h
 lexer.c
