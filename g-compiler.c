@@ -4,6 +4,7 @@
 
 #include "lexer.h"
 #include "parser.h"
+#include "memory.h"
 
 void *ParseAlloc(void *(*allocProc)(size_t));
 void Parse(void *, int, const char *);
@@ -58,11 +59,11 @@ int main(int argc, char **argv)
 
     int token;
     while ((token = yylex(lexer))) {
-        if (token == -1) {
+        if (-1 == token) {
             break;
         }
 
-        char *text = yyget_text(lexer);
+        char *text = gc_strdup(yyget_text(lexer));
         Parse(parser, token, text);
     }
 
