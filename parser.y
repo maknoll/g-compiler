@@ -1,13 +1,26 @@
 %include {
     #include <assert.h>
+    #include <stdio.h>
 }
 
-start ::= statement_list.
+%syntax_error {
+    fprintf(stderr, "%s", "Syntax Error!\n");
+}
+
+%start_symbol start
+
+start ::= header statement_list.
+start ::= error. {
+    fprintf(stderr, "%s", "Parser Error!\n");
+}
+
+header ::= PERCENT statement_list PERCENT. {
+    fprintf(stderr, "%s", "Header\n");
+}
 
 statement_list ::= statement_list statement.
 statement_list ::= statement.
 
-statement ::= PERCENT.
 statement ::= option.
 statement ::= command.
 
