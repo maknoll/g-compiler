@@ -11,7 +11,6 @@ void Parse(void *, int, const char *);
 void ParseFree(void *, void (*freeProc)(void *));
 
 const char *input =
-    "%"
     "M48"
     "METRIC,000.000"
     "T01C0.40"

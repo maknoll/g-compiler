@@ -14,8 +14,17 @@ start ::= error. {
     fprintf(stderr, "%s", "Parser Error!\n");
 }
 
+header ::= HEADERSTART statement_list PERCENT. {
+    fprintf(stderr, "%s", "Header with M48 and %\n");
+}
+header ::= HEADERSTART statement_list HEADEREND. {
+    fprintf(stderr, "%s", "Header with M48 and M95\n");
+}
+header ::= PERCENT statement_list HEADEREND. {
+    fprintf(stderr, "%s", "Header with % and M95\n");
+}
 header ::= PERCENT statement_list PERCENT. {
-    fprintf(stderr, "%s", "Header\n");
+    fprintf(stderr, "%s", "Header with % and %\n");
 }
 
 statement_list ::= statement_list statement.

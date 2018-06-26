@@ -10,6 +10,8 @@
 %%
 
 "%"                         return PERCENT;
+"M48"                       return HEADERSTART;
+"M95"                       return HEADEREND;
 ","                         return COMMA;
 
 [a-zA-Z][a-zA-Z]+           return OPTION;
